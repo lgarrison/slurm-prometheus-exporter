@@ -49,7 +49,7 @@ General slurm statistics, similar to `sdiag` output.
 Node allocation information.
 Node data is labeled by:
 
-- `state`: `alloc` (anything running on the node), `drain` (only if not set for reboot), `down`, `resv`, `free` (anything else)
+- `state`: `alloc` (anything running on the node), `drain` (only if not set for reboot), `down`, `resv`, `maint`, `free` (anything else)
 - `nodes`: first feature set on the node
 
 Optional query parameters:

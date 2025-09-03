@@ -64,6 +64,7 @@ data NodeRes
   | ResDrain
   | ResResv
   | ResDown
+  | ResMaint
   deriving (Eq, Ord, Show)
 
 instance Labeled NodeRes where
@@ -72,6 +73,7 @@ instance Labeled NodeRes where
   label ResDrain = "drain"
   label ResResv = "resv"
   label ResDown = "down"
+  label ResMaint = "maint"
 
 data NodeDesc = NodeDesc
   { descRes :: !NodeRes
@@ -88,6 +90,7 @@ addNode withreason Node{..} = ar ResAlloc nodeAlloc
     s | s == nodeStateRes -> ResResv
       | s == nodeStateDrain && s /= nodeStateRebootRequested -> ResDrain
       | s == nodeStateDown -> ResDown
+      | s == nodeStateMaint -> ResMaint
       | otherwise -> ResFree)
     mempty
       { allocTRES = nodeTRES - allocTRES nodeAlloc
